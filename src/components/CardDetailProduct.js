@@ -1,5 +1,4 @@
 import React from 'react';
-import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import ProductImg from '../assets/img/baked-cup-cake-removebg-preview.png';
 
 const CardDetailProduct = () => {

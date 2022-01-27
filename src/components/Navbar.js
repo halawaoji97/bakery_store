@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Union from '../assets/img/icon/Union.png';
 import Close from '../assets/img/icon/Close.svg';
 import { Link } from 'react-router-dom';
+import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Navbar = () => {
   const [toggleSidebar, settoggleSidebar] = useState(false);
@@ -78,6 +79,16 @@ const Navbar = () => {
                 className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 Contact
+              </Link>
+            </li>
+            <li className='block h-8 relative group' onClick={handleClick}>
+              <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
+              <Link
+                to='/cart'
+                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
+              >
+                <AiOutlineShoppingCart size={32} />
+                <span>2</span>
               </Link>
             </li>
           </ul>
