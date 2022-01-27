@@ -23,7 +23,7 @@ const Special = () => {
                 <div className='flex justify-between items-center'>
                   <div>
                     <h4 className='text-2xl text-dark-primary font-medium'>
-                      {item.name}
+                      <Link to={`/detail/${item.id}`}>{item.name}</Link>
                     </h4>
                     <span className='text-xl text-dark-secondary'>
                       Rp. {item.price}

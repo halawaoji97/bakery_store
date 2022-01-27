@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className='bg-grey-secondary relative  md:fixed rounded-br-3xl rounded-bl-3xl flex md:py-4 p-0 h-0 w-full rounded z-50 md:h-28 '>
+    <header className='bg-grey-secondary relative top-0 md:fixed rounded-br-3xl rounded-bl-3xl flex md:py-4 p-0 h-0 w-full rounded z-50 md:h-28 '>
       <div className='container flex justify-between items-center mx-auto align-items-center py-8 relative'>
         <button
           className='md:invisible bg-white flex justify-center items-center w-20 h-16 rounded-bl-3xl cursor-pointer  fixed z-10 top-0 right-0'
