@@ -1,0 +1,62 @@
+{
+  "special": [
+    {
+      "id": "asd1293uasdads1",
+      "name": "Baked cup",
+      "price": 420000,
+      "imageUrl": "/img/baked-cup-cake-removebg-preview.png",
+      "rate": 4.2
+    },
+    {
+      "id": "asd1293uasdads1",
+      "name": "Baked cup",
+      "price": 420000,
+      "imageUrl": "/img/baked-cup-cake-removebg-preview.png",
+      "rate": 4.2
+    },
+    {
+      "id": "asd1293uasdads1",
+      "name": "Choco cake",
+      "price": 360000,
+      "imageUrl": "/img/baked-cup-cake-removebg-preview.png",
+      "rate": 2.8
+    }
+  ],
+  "products": [
+    {
+      "id": "asd1293uasdads1",
+      "name": "Baked cup",
+      "price": 420000,
+      "imageUrl": "/images/baked-cup-cake-removebg-preview.png",
+      "rate": 4.2
+    },
+    {
+      "id": "asd1293uasdads1",
+      "name": "Choco cake",
+      "price": 230000,
+      "imageUrl": "/images/choco-cake-removebg-preview.png",
+      "rate": 4.8
+    },
+    {
+      "id": "asd1293uasdads1",
+      "name": "Baked cup",
+      "price": 420000,
+      "imageUrl": "/images/baked-cup-cake-removebg-preview.png",
+      "rate": 4.2
+    },
+    {
+      "id": "asd1293uasdads1",
+      "name": "Choco cake",
+      "price": 230000,
+      "imageUrl": "/images/choco-cake-removebg-preview.png",
+      "rate": 4.8
+    },
+    {
+      "id": "asd1293uasdads1",
+      "name": "Choco cake",
+      "price": 230000,
+      "imageUrl": "/images/choco-cake-removebg-preview.png",
+      "rate": 4.8
+    }
+  ]
+}
