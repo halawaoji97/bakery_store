@@ -1,35 +1,58 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import ProductImg from '../assets/img/baked-cup-cake-removebg-preview.png';
 
 const CardDetailProduct = () => {
+  const { id } = useParams();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const requestProductDetail = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/v1/product/find/${id}`
+        );
+        console.log(res.data);
+        setProducts(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+    requestProductDetail();
+  }, []);
+
+  {
+    loading && <div>Loading</div>;
+  }
   return (
     <section className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-2 md:mt-36 container p-8 md:p-0 md:py-16 shadow-lg rounded-2xl border-2 mx-auto mb-44'>
       <div className=''>
         <img
           className='object-cover p-8 h-auto w-auto'
-          src={ProductImg}
-          alt='product'
+          src={products.imageUrl}
+          alt={products.title}
         />
       </div>
       <div className='flex justify-center flex-col'>
         <h1 className='font-bold text-3xl md:text-4xl tracking-wide text-dark-primary'>
-          Cake cup
+          {products.title}
         </h1>
         <p className='text-2xl text-dark-primary font-medium py-2'>
-          Rp. 600000
+          Rp. {products.price}
         </p>
         <h2 className='text-xl text-dark-primary mt-2'>Description</h2>
         <p className='md:text-xl text-dark-secondary tracking-wide py-2'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non <br />
-          repellat aspernatur commodi illo officiis similique architecto <br />
-          impedit consequatur. Aliquam rerum saepe placeat dolor at neque <br />
-          excepturi! Alias et molestias molestiae!
+          {products.description}
         </p>
         <hr />
         <p className='md:text-xl text-dark-secondary tracking-wide py-2'>
-          Size : 4x6 cm
+          Size : {products.size} cm
           <br />
-          Weight : 480 gr
+          Weight : {products.weight} gr
           <br />
           Durability : 3 days
           <br />
