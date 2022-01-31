@@ -1,20 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import ProductImg from '../assets/img/baked-cup-cake-removebg-preview.png';
+import { useDispatch } from 'react-redux';
+import { publicRequest } from '../requestMethods';
+import { addProduct } from '../redux/cartRedux';
 
 const CardDetailProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const requestProductDetail = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/v1/member/detail-page/${id}`
-        );
+        const res = await publicRequest.get(`/detail-page/${id}`);
         console.log(res.data);
         setProduct(res.data);
       } catch (error) {
@@ -23,7 +25,15 @@ const CardDetailProduct = () => {
       setLoading(false);
     };
     requestProductDetail();
-  }, []);
+  }, [id]);
+
+  const handleAddToCart = () => {
+    dispatch(
+      addProduct({
+        ...product,
+      })
+    );
+  };
 
   {
     loading && <div>Loading</div>;
@@ -60,7 +70,10 @@ const CardDetailProduct = () => {
           <br />
         </p>
         <div className='flex justify-between md:mr-16 my-16'>
-          <button className='bg-yellow-primary transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  text-dark-primary hover:text-white rounded-full py-3 px-12  font-bold'>
+          <button
+            className='bg-yellow-primary transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  text-dark-primary hover:text-white rounded-full py-3 px-12  font-bold'
+            onClick={handleAddToCart}
+          >
             Add To Cart
           </button>
           <button className='bg-grey-secondary transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  text-dark-primary hover:text-white rounded-full py-3 px-12  font-bold'>
