@@ -5,7 +5,7 @@ import ProductImg from '../assets/img/baked-cup-cake-removebg-preview.png';
 
 const CardDetailProduct = () => {
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,10 +13,10 @@ const CardDetailProduct = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/v1/product/find/${id}`
+          `http://localhost:5000/api/v1/member/detail-page/${id}`
         );
         console.log(res.data);
-        setProducts(res.data);
+        setProduct(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -33,30 +33,30 @@ const CardDetailProduct = () => {
       <div className=''>
         <img
           className='object-cover p-8 h-auto w-auto'
-          src={products.imageUrl}
-          alt={products.title}
+          src={`/${product.imageUrl}`}
+          alt={product.name}
         />
       </div>
       <div className='flex justify-center flex-col'>
         <h1 className='font-bold text-3xl md:text-4xl tracking-wide text-dark-primary'>
-          {products.title}
+          {product.name}
         </h1>
         <p className='text-2xl text-dark-primary font-medium py-2'>
-          Rp. {products.price}
+          Rp. {product.price}
         </p>
         <h2 className='text-xl text-dark-primary mt-2'>Description</h2>
         <p className='md:text-xl text-dark-secondary tracking-wide py-2'>
-          {products.description}
+          {product.description}
         </p>
         <hr />
         <p className='md:text-xl text-dark-secondary tracking-wide py-2'>
-          Size : {products.size} cm
+          Size : {product.size} cm
           <br />
-          Weight : {products.weight} gr
+          Weight : {product.weight} gr
           <br />
           Durability : 3 days
           <br />
-          Category : Cake
+          {/* Category : {product.categoryId.name} */}
           <br />
         </p>
         <div className='flex justify-between md:mr-16 my-16'>

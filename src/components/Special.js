@@ -13,9 +13,12 @@ const Special = () => {
     const requestProduct = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('http://localhost:5000/api/v1/product');
-        console.log(res.data);
-        setProducts(res.data);
+        const res = await axios.get(
+          'http://localhost:5000/api/v1/member/landing-page'
+        );
+        const json = await res.data.specialProduct;
+        console.log(json);
+        setProducts(json);
       } catch (error) {
         console.log(error);
       }
@@ -23,6 +26,7 @@ const Special = () => {
     };
     requestProduct();
   }, []);
+  console.log(products);
 
   return (
     <section id='special' className=' justify-center items-center flex my-10'>
@@ -39,14 +43,14 @@ const Special = () => {
                 className='shadow-lg group rounded-xl transition-all origin-left duration-700 ease-out p-8'
               >
                 <img
-                  src={product.imageUrl}
-                  alt={product.title}
+                  src={`${product.imageUrl}`}
+                  alt={product.name}
                   className='object-cover  p-8 h-auto w-auto'
                 />
                 <div className='flex justify-between items-center'>
                   <div>
                     <h4 className='text-2xl text-dark-primary font-medium'>
-                      <Link to={`/detail/${product._id}`}>{product.title}</Link>
+                      <Link to={`/detail/${product._id}`}>{product.name}</Link>
                     </h4>
                     <span className='text-xl text-dark-secondary'>
                       Rp. {product.price}
