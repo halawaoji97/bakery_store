@@ -15,8 +15,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className='bg-grey-secondary relative top-0 md:fixed rounded-br-3xl rounded-bl-3xl flex md:py-4 p-0 h-0 w-full rounded z-50 md:h-28 '>
-      <div className='container flex justify-between items-center mx-auto align-items-center py-8 relative'>
+    <header className='bg-grey-secondary relative top-0 md:fixed rounded-br-3xl rounded-bl-3xl bg-transparent flex md:py-4 p-0 h-0 w-full rounded z-50 md:h-28 '>
+      <div className='container flex justify-between items-center mx-auto py-8 relative'>
         <button
           className='md:invisible bg-white flex justify-center items-center w-20 h-16 rounded-bl-3xl cursor-pointer  fixed z-10 top-0 right-0'
           onClick={handleClick}
@@ -42,7 +42,7 @@ const Navbar = () => {
               <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
               <Link
                 to='/'
-                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
+                className='text-white  hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 Home
               </Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
               <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
               <Link
                 to='/'
-                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
+                className='text-white  hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 Services
               </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
               <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
               <Link
                 to='/'
-                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
+                className='text-white  hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 Products
               </Link>
@@ -69,16 +69,7 @@ const Navbar = () => {
               <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
               <Link
                 to='/'
-                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
-              >
-                About
-              </Link>
-            </li>
-            <li className='block h-8 relative group' onClick={handleClick}>
-              <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
-              <Link
-                to='/'
-                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
+                className='text-white  hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 Contact
               </Link>
@@ -87,7 +78,7 @@ const Navbar = () => {
               <span className='block container h-0.5 w-full  rounded-full bg-dark-primary absolute bottom-0 left-0 right-0 scale-x-0 group-hover:scale-x-100 transition-tansform ease-in duration-700 origin-left'></span>
               <Link
                 to='/cart'
-                className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
+                className='text-white  hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 <AiOutlineShoppingCart size={32} />
                 <span>{cart.cartTotalQty}</span>
