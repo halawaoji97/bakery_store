@@ -16,7 +16,10 @@ const Special = () => {
   console.log(data);
 
   return (
-    <section id='special' className=' justify-center items-center flex my-10'>
+    <section
+      id='special'
+      className='font-quicksand justify-center items-center flex my-10'
+    >
       {isLoading ? (
         <p>Loading</p>
       ) : error ? (
@@ -32,30 +35,33 @@ const Special = () => {
                 data?.specialProduct?.map((product, index) => (
                   <div
                     key={index}
-                    className='shadow-lg group rounded-xl transition-all origin-left duration-700 ease-out p-8'
+                    className='shadow-lg group rounded-xl transition-all origin-left duration-700 ease-out p-4'
                   >
                     <img
                       src={`${product.imageUrl}`}
                       alt={product.name}
-                      className='object-cover  p-8 h-auto w-auto'
+                      className='object-cover p-8 h-auto w-auto'
                     />
                     <div className='flex justify-between items-center'>
                       <div>
-                        <h4 className='text-2xl text-dark-primary font-medium'>
+                        <h4 className='text-2xl text-dark-primary font-semibold'>
                           <Link to={`/detail/${product._id}`}>
                             {product.name}
                           </Link>
                         </h4>
-                        <span className='text-xl text-dark-secondary'>
+                        <span className='text-xl text-dark-secondary font-normal'>
                           Rp. {product.price}
                         </span>
                       </div>
                       <div className='flex justify-between w-1/4'>
-                        <button>
-                          <AiOutlineHeart size={32} />
+                        <button className='text-dark-primary hover:text-white hover:bg-red-velvet rounded-full transition-all ease-in delay-75 duration-300 mr-2'>
+                          <AiOutlineHeart className='p-2' size={48} />
                         </button>
-                        <button onClick={() => handleAddToCart(product)}>
-                          <AiOutlineShoppingCart size={32} />
+                        <button
+                          className='text-dark-primary hover:text-white hover:bg-yellow-primary rounded-full transition-all ease-in delay-75 duration-300'
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          <AiOutlineShoppingCart className='p-2' size={48} />
                         </button>
                       </div>
                     </div>

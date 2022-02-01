@@ -3,13 +3,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-primary': '#242844',
+        'dark-primary': '#313131',
         'dark-secondary': '#131723',
         'yellow-primary': '#F7B733',
         'red-velvet': '#FC4A1A',
         'grey-secondary': '#E5E5E5',
         'pink-primary': '#FF7171',
-        'main-hue': '#0005ff',
+        'blue-indigo': '#3D495E',
         'cta-bg': '#bbd0ff',
         'card-bg': '#1e293c',
         'accent-bg': '#666d7a',

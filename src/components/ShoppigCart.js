@@ -29,49 +29,60 @@ const ShoppingCart = () => {
   };
 
   return (
-    <section className='container mx-auto'>
-      <div className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-2 md:mt-36 container p-8 md:p-0 md:py-16 shadow-lg rounded-2xl border-2 mx-auto mb-44'>
-        <div className='p-8 md:p-16'>
-          <h3 className='font-bold text-xl md:text-3xl tracking-wide text-dark-primary'>
-            Your Cart
-          </h3>
+    <section className='container mx-auto font-quicksand tracking-wide'>
+      <h3 className='font-bold text-3xl md:text-4xl text-dark-primary text-center mt-20 md:mt-40'>
+        Your Cart
+      </h3>
+      <div className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-3 mt-8 md:mt-16 container shadow-lg rounded-2xl border-2 mb-44'>
+        <div className='p-8 col-span-2'>
           {cart.cartItems?.map((product, index) => (
-            <div className='flex justify-between items-center'>
-              <div className='h-16 w-16 rounded-xl'>
+            <div className='flex justify-between items-center mt-6' key={index}>
+              <div className='h-16 w-16 rounded-full border-2 border-grey-secondary flex place-content-center'>
                 <img
                   src={product.imageUrl}
                   alt={product.name}
-                  className='img-contain img-fluid'
+                  className='object-contain rounded-full p-1 h-full w-full'
                 />
               </div>
-              <div className='col col-lg-auto'>
-                <h6 className='name'>Cake</h6>
+              <div className='w-24 flex justify-between items-center'>
+                <h6 className='font-semibold text-dark-primary'>
+                  {product.name}
+                </h6>
               </div>
-              <div className='flex justify-around'>
-                <button onClick={() => handleDecreaseCart(product)}>
-                  <AiOutlineMinus size={32} />
+
+              <div className='flex justify-between w-24 border-grey-secondary  h-10'>
+                <button
+                  onClick={() => handleDecreaseCart(product)}
+                  className='bg-grey-secondary text-dark-primary rounded-lg'
+                >
+                  <AiOutlineMinus size={24} />
                 </button>
                 <input
                   type='text'
                   value={product.cartQty}
                   readOnly
-                  className='text-center'
+                  className='text-center w-8'
                 />
-                <button onClick={() => handleAddToCart(product)}>
-                  <AiOutlinePlus size={32} />
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className='bg-grey-secondary text-dark-primary rounded-lg'
+                >
+                  <AiOutlinePlus size={24} />
                 </button>
               </div>
               <button>
                 <AiOutlineDelete
                   onClick={() => handleRemoveFromCart(product)}
-                  size={32}
+                  className='hover:text-red-velvet'
+                  size={24}
                 />
               </button>
+              <div className='w-24'>Rp. {product.cartQty * product.price}</div>
               <hr />
             </div>
           ))}
         </div>
-        <div className='bg-dark-primary text-white p-8 h-full'>
+        <div className='bg-dark-primary text-white p-8 h-full rounded-2xl'>
           <h5 className='font-bold text-xl md:text-3xl tracking-wide'>
             Summary Order
           </h5>
@@ -92,7 +103,7 @@ const ShoppingCart = () => {
             <p>Total Pay</p>
             <span>Rp. {cart.total}</span>
           </div>
-          <button className='bg-yellow-primary transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-secondary  text-dark-primary  rounded-full py-3 px-12  font-bold'>
+          <button className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  hover:text-white text-dark-secondary rounded-full py-3 px-12  font-semibold'>
             Checkout
           </button>
         </div>
