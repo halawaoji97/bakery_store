@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Union from '../assets/img/icon/Union.png';
 import Close from '../assets/img/icon/Close.svg';
 import { Link } from 'react-router-dom';
-import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const [toggleSidebar, settoggleSidebar] = useState(false);
+  const cart = useSelector((state) => state.cart);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -88,7 +90,7 @@ const Navbar = () => {
                 className='text-white md:text-dark-primary hover:text-yellow-primary active active:text-yellow-primary font-bold md:font-semibold lg:font-semibold transition-all ease-in delay-75 duration-300'
               >
                 <AiOutlineShoppingCart size={32} />
-                <span>2</span>
+                <span>{cart.cartTotalQty}</span>
               </Link>
             </li>
           </ul>

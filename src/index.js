@@ -7,10 +7,12 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer, { productsFetch } from './redux/productsSlice';
 import { productsApi } from './redux/productsApi';
+import cartReducer, { getTotalAmount } from './redux/cartSlice';
 
 const store = configureStore({
   reducer: {
     product: productsReducer,
+    cart: cartReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -18,6 +20,7 @@ const store = configureStore({
 });
 
 store.dispatch(productsFetch());
+store.dispatch(getTotalAmount());
 // import store from './redux/store';
 
 ReactDOM.render(
