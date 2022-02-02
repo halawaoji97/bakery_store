@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useGetAllProductsQuery } from '../redux/productsApi';
 import { addToCart } from '../redux/cartSlice';
+import NumberFormat from '../utils/numberFormat';
 
 const Special = () => {
   const dispatch = useDispatch();
@@ -13,17 +14,37 @@ const Special = () => {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
-  console.log(data);
 
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+
+  const circleCommonClasses =
+    'h-4 w-4 bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 rounded-full';
   return (
     <section
       id='special'
       className='font-quicksand justify-center items-center flex my-10'
     >
       {isLoading ? (
-        <p>Loading</p>
+        <div className='flex my-40'>
+          <div
+            className={`${circleCommonClasses} mr-1 animate-bounce200`}
+          ></div>
+          <div
+            className={`${circleCommonClasses} mr-1 animate-bounce400`}
+          ></div>
+          <div
+            className={`${circleCommonClasses} mr-1 animate-bounce600`}
+          ></div>
+        </div>
       ) : error ? (
-        <p>An error occured</p>
+        <p className='text-red-700 my-40'>
+          Opsss,,, something went wrong! <br /> please refresh and try again!
+        </p>
       ) : (
         <>
           <div className='container mx-auto px-6 md:px-0'>
@@ -50,7 +71,7 @@ const Special = () => {
                           </Link>
                         </h4>
                         <span className='text-xl text-dark-secondary font-normal'>
-                          Rp. {product.price}
+                          {NumberFormat(product.price)}
                         </span>
                       </div>
                       <div className='flex justify-between w-1/4'>

@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { publicRequest } from '../requestMethods';
 import { addProduct } from '../redux/cartRedux';
+import NumberFormat from '../utils/numberFormat';
 
 const CardDetailProduct = () => {
   const { id } = useParams();
@@ -12,12 +13,21 @@ const CardDetailProduct = () => {
 
   const dispatch = useDispatch();
 
+  const circleCommonClasses =
+    'h-4 w-4 bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 rounded-full';
+
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+
   useEffect(() => {
     const requestProductDetail = async () => {
       setLoading(true);
       try {
         const res = await publicRequest.get(`/detail-page/${id}`);
-        console.log(res.data);
         setProduct(res.data);
       } catch (error) {
         console.log(error);
@@ -36,7 +46,13 @@ const CardDetailProduct = () => {
   };
 
   {
-    loading && <div>Loading</div>;
+    loading && (
+      <div className='flex my-40'>
+        <div className={`${circleCommonClasses} mr-1 animate-bounce200`}></div>
+        <div className={`${circleCommonClasses} mr-1 animate-bounce400`}></div>
+        <div className={`${circleCommonClasses} mr-1 animate-bounce600`}></div>
+      </div>
+    );
   }
   return (
     <section className='font-quicksand tracking-wide	 grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-2 md:mt-36 container p-8 md:p-0 md:py-16 shadow-lg rounded-2xl border-2 mx-auto mb-44'>
@@ -52,7 +68,7 @@ const CardDetailProduct = () => {
           {product.name}
         </h1>
         <p className='text-2xl text-dark-primary font-semibold py-2'>
-          Rp. {product.price}
+          {NumberFormat(product.price)}
         </p>
         <h2 className='text-xl font-semibold text-dark-primary mt-2'>
           Description
@@ -78,7 +94,7 @@ const CardDetailProduct = () => {
           >
             Add To Cart
           </button>
-          <button className='bg-grey-secondary transition-all ease-in duration-0 hover:duration-500 hover:bg-gray-300  text-dark-primary rounded-full py-3 px-12  font-bold'>
+          <button className='hover:bg-cta-bg transition-all ease-in duration-0 hover:duration-500 bg-gray-300  text-dark-primary rounded-full py-3 px-12  font-bold'>
             Add To Wishlist
           </button>
         </div>

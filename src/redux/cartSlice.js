@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const initialState = {
   cartItems: localStorage.getItem('cartItems')
@@ -18,10 +19,21 @@ const cartSlice = createSlice({
       );
 
       if (existItem >= 0) {
-        state.cartItems[existItem].cartQty += 1;
+        state.cartItems[existItem] = {
+          ...state.cartItems[existItem],
+          cartQty: state.cartItems[existItem].cartQty + 1,
+        };
+        let productName = state.cartItems[existItem].name;
+        toast.success(`${productName} added to cart`, {
+          position: 'bottom-left',
+        });
       } else {
         const tempProduct = { ...action.payload, cartQty: 1 };
         state.cartItems.push(tempProduct);
+        let productName = tempProduct.name;
+        toast.success(`${productName} added to cart`, {
+          position: 'bottom-left',
+        });
       }
 
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
@@ -34,12 +46,22 @@ const cartSlice = createSlice({
 
       if (state.cartItems[itemIndex].cartQty > 1) {
         state.cartItems[itemIndex].cartQty -= 1;
+
+        let productName = state.cartItems[itemIndex].name;
+        toast.info(`${productName} deleted from cart`, {
+          position: 'bottom-left',
+        });
       } else if (state.cartItems[itemIndex].cartQty === 1) {
         const nextCartItems = state.cartItems.filter(
           (item) => item._id !== action.payload._id
         );
 
         state.cartItems = nextCartItems;
+
+        let productName = state.cartItems[itemIndex].name;
+        toast.info(`${productName} deleted from cart`, {
+          position: 'bottom-left',
+        });
       }
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
@@ -52,6 +74,9 @@ const cartSlice = createSlice({
           );
 
           state.cartItems = nextCartItems;
+          toast.info(`Product removed from cart`, {
+            position: 'bottom-left',
+          });
         }
         localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
         return state;

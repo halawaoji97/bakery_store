@@ -21,7 +21,12 @@ module.exports = {
       fontFamily: {
         quicksand: ['Quicksand', 'sans-serif'],
       },
+      animation: {
+        bounce200: 'bounce 1s linear infinite 200ms',
+        bounce400: 'bounce 1s linear infinite 400ms',
+        bounce600: 'bounce 1s linear infinite 600ms',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tw-elements/dist/plugin')],
 };

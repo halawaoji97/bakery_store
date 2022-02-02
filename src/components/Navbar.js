@@ -11,7 +11,6 @@ const Navbar = () => {
   const cart = useSelector((state) => state.cart);
 
   const changeBackground = () => {
-    console.log(window.scrollY);
     if (window.scrollY >= 66) {
       setBackgroundNavbar(true);
     } else {
@@ -20,7 +19,6 @@ const Navbar = () => {
   };
   useEffect(() => {
     changeBackground();
-    // adding the event when scroll change background
     window.addEventListener('scroll', changeBackground);
   });
 
@@ -30,10 +28,6 @@ const Navbar = () => {
   };
 
   return (
-    // <header
-    //   className=' relative top-0 md:fixed rounded-br-3xl rounded-bl-3xl bg-transparent flex md:py-4 p-0 h-0 w-full rounded z-50 md:h-28 font-quicksand'
-    //   style={{ backgroundColor: `${backgroundNavbar}` }}
-    // >
     <header
       className={`relative top-0 md:fixed rounded-br-3xl rounded-bl-3xl  flex md:py-4 p-0 h-0 w-full rounded z-50 md:h-28 font-quicksand ${
         backgroundNavbar
