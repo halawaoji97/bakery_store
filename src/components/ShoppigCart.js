@@ -9,7 +9,7 @@ import {
   removeFromCart,
 } from '../redux/cartSlice';
 import NumberFormat from '../utils/numberFormat';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);

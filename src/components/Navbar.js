@@ -20,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     changeBackground();
     window.addEventListener('scroll', changeBackground);
-  });
+  }, [cart]);
 
   const handleClick = (e) => {
     e.preventDefault();

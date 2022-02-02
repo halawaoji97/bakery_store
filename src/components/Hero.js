@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import HeroImg from '../assets/img/hero-image2.png';
 import HeroImg from '../assets/images/image-removebg-preview (1) 1 (1).png';
-import HeroPattern from '../assets/images/heroBg.svg';
 
 const Hero = () => {
+  const scroll = () => {
+    const section = document.querySelector('#specialProduct');
+    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
   return (
     <section className='py-16 md:py-32 h-full tracking-wide font-quicksand'>
       <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 justify-center md:justify-between items-center py-10'>
@@ -26,7 +28,10 @@ const Hero = () => {
           </p>
 
           <div className='mt-12 md:mt-16'>
-            <button className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  hover:text-white text-dark-secondary rounded-full py-3 px-12  font-semibold'>
+            <button
+              className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  hover:text-white text-dark-secondary rounded-full py-3 px-12  font-semibold'
+              onClick={scroll}
+            >
               Shop Now
             </button>
           </div>

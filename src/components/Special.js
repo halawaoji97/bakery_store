@@ -2,31 +2,32 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetAllProductsQuery } from '../redux/productsApi';
 import { addToCart } from '../redux/cartSlice';
 import NumberFormat from '../utils/numberFormat';
 
 const Special = () => {
-  const dispatch = useDispatch();
-
   const { data, error, isLoading } = useGetAllProductsQuery();
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  };
+  const products = useSelector((state) => state.product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scroll({
       top: 0,
       behavior: 'smooth',
     });
-  });
+  }, [products, dispatch]);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
 
   const circleCommonClasses =
     'h-4 w-4 bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 rounded-full';
   return (
     <section
-      id='special'
+      id='specialProduct'
       className='font-quicksand justify-center items-center flex my-10'
     >
       {isLoading ? (
