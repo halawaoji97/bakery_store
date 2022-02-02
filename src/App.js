@@ -6,6 +6,8 @@ import Cart from './pages/Cart';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Payment from './components/Payment.js';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/detail/:id' element={<DetailProduct />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/payment' element={<Payment />} />
       </Routes>
     </BrowserRouter>
   );

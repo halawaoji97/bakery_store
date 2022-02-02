@@ -23,6 +23,11 @@ const ShoppingCart = () => {
     navigate('/');
   };
 
+  const checkoutInformation = (e) => {
+    e.preventDefault();
+    navigate('/checkout');
+  };
+
   useEffect(() => {
     window.scroll({
       top: 0,
@@ -186,7 +191,10 @@ const ShoppingCart = () => {
                 <p>Total Pay</p>
                 <span>{NumberFormat(grandTotal)}</span>
               </div>
-              <button className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary hover:text-white text-dark-secondary rounded-full py-3 mt-10 justify-self-end px-12 font-semibold'>
+              <button
+                className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary hover:text-white text-dark-secondary rounded-full py-3 mt-10 justify-self-end px-12 font-semibold'
+                onClick={checkoutInformation}
+              >
                 Checkout
               </button>
             </div>
