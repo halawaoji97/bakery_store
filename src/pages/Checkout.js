@@ -124,7 +124,9 @@ const Checkout = () => {
             )}
             {currentStep === 'completed' && (
               <Controller>
-                <Link to='/'>Back to Home</Link>
+                <Link to='/' className='text-center'>
+                  Back to Home
+                </Link>
               </Controller>
             )}
           </>
