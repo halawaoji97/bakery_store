@@ -1,25 +1,21 @@
 import React from 'react';
 import NumberFormat from '../utils/numberFormat';
 
-const Payment = ({ handleCheckout, customerInformatin, onChange }) => {
-  console.log(customerInformatin);
+const Payment = ({ handleCheckout, data, onChange }) => {
+  console.log(data);
   return (
     <section className='container mx-auto font-quicksand tracking-wide'>
-      <h3 className='font-bold text-3xl md:text-4xl text-dark-primary text-center mt-20 md:mt-40'>
-        Checkout Payment
-      </h3>
-      <p className='text-dark-secondary text-center'>
-        Please fill the form below
-      </p>
-
       <div className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-3 mt-8 md:mt-16 container shadow-lg rounded-2xl border-2 mb-44'>
-        <form className='max-w-xl col-span-2 m-4 p-10'>
+        <form className='max-w-xl col-span-2  p-10'>
           <div className=''>
-            <label className='block text-sm text-gray-00' htmlFor='fullName'>
+            <label
+              className='block font-medium text-dark-primary'
+              htmlFor='fullName'
+            >
               Bank From
             </label>
             <input
-              className='w-full px-5 py-1 text-gray-700 bg-gray-200 rounded'
+              className='w-full px-5 font-medium py-3 text-dark-secondary bg-gray-200 rounded-lg my-2'
               id='bankFrom'
               name='bankFrom'
               type='text'
@@ -30,25 +26,22 @@ const Payment = ({ handleCheckout, customerInformatin, onChange }) => {
             />
           </div>
           <div className='mt-2'>
-            <label className='block text-sm text-gray-600' htmlFor='email'>
+            <label
+              className='block font-medium text-dark-primary'
+              htmlFor='accountHolder'
+            >
               Account Holder
             </label>
             <input
-              className='w-full px-5  py-4 text-gray-700 bg-gray-200 rounded'
+              className='w-full px-5 font-medium py-3 text-dark-secondary bg-gray-200 rounded-lg my-2'
               id='accountHolder'
-              name=' accountHolder'
+              name='accountHolder'
               type='email'
               required
               placeholder='accountHolder'
               aria-label='accountHolder'
               onChange={onChange}
             />
-          </div>
-
-          <div>
-            <button className='mt-16 font-medium text-dark-primary hover:font-semibold hover:underline w-1/2 p-2'>
-              Continue shopping
-            </button>
           </div>
         </form>
 

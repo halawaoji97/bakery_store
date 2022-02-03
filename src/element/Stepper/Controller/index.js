@@ -1,10 +1,12 @@
-import React from "react";
+import React from 'react';
 
 export default function Controller(props) {
   return (
-    <section className="container">
-      <div className="row justify-content-center">
-        <div className="col-3">{props.children}</div>
+    <section className='container mx-auto'>
+      <div className='flex justify-center items-center'>
+        <div className='h-36 w-1/2 flex flex-col md:flex-row justify-between items-center'>
+          {props.children}
+        </div>
       </div>
     </section>
   );
