@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Payment from './components/Payment.js';
 import Checkout from './pages/Checkout';
+import Order from './components/Order';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/payment' element={<Payment />} />
+        <Route path='/order' element={<Order />} />
       </Routes>
     </BrowserRouter>
   );

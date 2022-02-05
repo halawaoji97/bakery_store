@@ -13,7 +13,20 @@ export const productsApi = createApi({
     getProductDetail: builder.query({
       query: (productId) => `detail-page/${productId}`,
     }),
+    // create createOrder
+    createOrder: builder.query({
+      query: (order) => `order-page`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: (order) => JSON.stringify(order),
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery, useGetProductDetailQuery } = productsApi;
+export const {
+  useGetAllProductsQuery,
+  useGetProductDetailQuery,
+  useCreateOrderQuery,
+} = productsApi;

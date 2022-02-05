@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CheckoutInformation from '../components/CheckoutInformation';
 import Completed from '../components/Completed';
@@ -9,27 +11,79 @@ import Stepper, {
   MainContent,
   Controller,
 } from '../element/Stepper';
+import { createOrder, postOrder } from '../redux/orderAction';
+import { addTodo, addTodoAsync } from '../redux/orderSlice';
+import { useCreateOrderQuery } from '../redux/productsApi';
 import NumberFormat from '../utils/numberFormat';
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const cartItemsInLocalStorage = {
+    cartItems: localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [],
+    cartTotalQty: 0,
+    cartTotalAmount: 0,
+  };
+
+  // get total cartQty from localStorage cartItems
+  const cartTotalQty = cartItemsInLocalStorage.cartItems.reduce(
+    (acc, item) => acc + item.cartQty,
+    0
+  );
+
+  // get total cartAmount from localStorage cartItems
+  const cartTotalAmount = cartItemsInLocalStorage.cartItems.reduce(
+    (acc, item) => acc + item.cartQty * item.price,
+    0
+  );
+
+  console.log('cartTotalQty: ', cartTotalQty);
+  console.log('cartTotalAmount: ', cartTotalAmount);
+
+  console.log(cartItemsInLocalStorage.cartItems);
+
   const [customerInformation, setCustomerInformation] = useState({
     fullName: '',
     email: '',
-    phoneNumber: '',
-    bankFrom: '',
-    accountHolder: '',
-    street: '',
-    city: new Date(),
-    country: '',
-    zipCode: '',
+    // phoneNumber: '',
+    // bankFrom: '',
+    // accountHolder: '',
+    // street: '',
+    // city: new Date(),
+    // country: '',
+    // zipCode: '',
     addressNote: '',
+    deliveryOn: new Date(),
+    orderOn: new Date(),
+    cartItems: cartItemsInLocalStorage.cartItems,
+    cartTotalAmount: cartTotalAmount,
+    cartTotalQty: cartTotalQty,
   });
 
   const handleCheckout = (e) => {
-    setCustomerInformation({ ...customerInformation });
     e.preventDefault();
-    navigate('/payment');
+    setCustomerInformation({ ...customerInformation });
+    const order = {
+      fullName: customerInformation.fullName,
+      email: customerInformation.email,
+      addressNote: customerInformation.addressNote,
+      deliveryOn: customerInformation.deliveryOn,
+      orderOn: customerInformation.orderOn,
+      cartItems: customerInformation.cartItems,
+      cartTotalAmount: customerInformation.cartTotalAmount,
+      cartTotalQty: customerInformation.cartTotalQty,
+    };
+    console.log(order);
+
+    axios.post('http://localhost:5000/api/orders', order).then((res) => {
+      console.log(res);
+    });
+    // dispatch(createOrder(order));
+    // dispatch(postOrderAsync(order));
+    // postOrderAsync(order);
   };
 
   const onChange = (e) => {
@@ -54,7 +108,13 @@ const Checkout = () => {
     payment: {
       title: 'Payment',
       description: 'Kindly follow the instructions below',
-      content: <Payment data={customerInformation} onChange={onChange} />,
+      content: (
+        <Payment
+          data={customerInformation}
+          onChange={onChange}
+          handleCheckout={handleCheckout}
+        />
+      ),
     },
     completed: {
       title: 'Yay! Completed',
@@ -115,7 +175,7 @@ const Checkout = () => {
                   customerInformation.accountHolder !== '' && (
                     <button
                       className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  hover:text-white text-dark-secondary rounded-full py-3 px-12  font-semibold'
-                      onClick={nextStep}
+                      // onClick={() => handleCheckout({ ...customerInformation })}
                     >
                       Make Order
                     </button>

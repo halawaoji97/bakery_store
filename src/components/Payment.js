@@ -2,6 +2,7 @@ import React from 'react';
 import NumberFormat from '../utils/numberFormat';
 
 const Payment = ({ handleCheckout, data, onChange }) => {
+  console.log(handleCheckout);
   console.log(data);
   return (
     <section className='container mx-auto font-quicksand tracking-wide'>
