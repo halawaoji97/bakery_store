@@ -28,33 +28,25 @@ const Checkout = () => {
     cartTotalAmount: 0,
   };
 
-  // get total cartQty from localStorage cartItems
   const cartTotalQty = cartItemsInLocalStorage.cartItems.reduce(
     (acc, item) => acc + item.cartQty,
     0
   );
-
-  // get total cartAmount from localStorage cartItems
   const cartTotalAmount = cartItemsInLocalStorage.cartItems.reduce(
     (acc, item) => acc + item.cartQty * item.price,
     0
   );
 
-  console.log('cartTotalQty: ', cartTotalQty);
-  console.log('cartTotalAmount: ', cartTotalAmount);
-
-  console.log(cartItemsInLocalStorage.cartItems);
-
   const [customerInformation, setCustomerInformation] = useState({
     fullName: '',
     email: '',
-    // phoneNumber: '',
-    // bankFrom: '',
-    // accountHolder: '',
-    // street: '',
-    // city: new Date(),
-    // country: '',
-    // zipCode: '',
+    phoneNumber: '',
+    bankFrom: '',
+    accountHolder: '',
+    street: '',
+    city: '',
+    country: '',
+    zipCode: '',
     addressNote: '',
     deliveryOn: new Date(),
     orderOn: new Date(),
@@ -75,15 +67,25 @@ const Checkout = () => {
       cartItems: customerInformation.cartItems,
       cartTotalAmount: customerInformation.cartTotalAmount,
       cartTotalQty: customerInformation.cartTotalQty,
+      phoneNumber: customerInformation.phoneNumber,
+      bankFrom: customerInformation.bankFrom,
+      accountHolder: customerInformation.accountHolder,
+      street: customerInformation.street,
+      city: customerInformation.city,
+      country: customerInformation.country,
+      zipCode: customerInformation.zipCode,
     };
     console.log(order);
 
-    axios.post('http://localhost:5000/api/orders', order).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post('http://localhost:5000/api/v1/member/order-page', order)
+      .then((res) => {
+        console.log(res);
+      });
     // dispatch(createOrder(order));
     // dispatch(postOrderAsync(order));
     // postOrderAsync(order);
+    navigate('/completed');
   };
 
   const onChange = (e) => {
@@ -113,6 +115,9 @@ const Checkout = () => {
           data={customerInformation}
           onChange={onChange}
           handleCheckout={handleCheckout}
+          prevStep={() => {
+            navigate(`/cart`);
+          }}
         />
       ),
     },
@@ -135,7 +140,11 @@ const Checkout = () => {
             />
 
             <Meta data={steps} current={currentStep} />
-            <MainContent data={steps} current={currentStep} />
+            <MainContent
+              data={steps}
+              prevStep={prevStep}
+              current={currentStep}
+            />
 
             {currentStep === 'checkoutInformation' && (
               <Controller>
@@ -163,7 +172,7 @@ const Checkout = () => {
               </Controller>
             )}
 
-            {currentStep === 'payment' && (
+            {/* {currentStep === 'payment' && (
               <Controller>
                 <button
                   className='hover:bg-cta-bg transition-all ease-in duration-0 hover:duration-500 bg-gray-300  text-dark-primary rounded-full py-3 px-12  font-bold'
@@ -181,7 +190,7 @@ const Checkout = () => {
                     </button>
                   )}
               </Controller>
-            )}
+            )} */}
             {currentStep === 'completed' && (
               <Controller>
                 <Link to='/' className='text-center'>

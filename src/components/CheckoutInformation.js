@@ -1,9 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import NumberFormat from '../utils/numberFormat';
 
 const CheckoutInformation = ({ handleCheckout, data, onChange }) => {
   console.log(data);
+  const tax = 0.02;
+  const shipping = 10000;
+  const totalPayment =
+    data.cartTotalAmount * tax + data.cartTotalAmount + shipping;
+
   return (
     <section className='container mx-auto font-quicksand tracking-wide'>
       <div className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-3 mt-8 md:mt-16 container shadow-lg rounded-2xl border-2 mb-44'>
@@ -159,11 +163,11 @@ const CheckoutInformation = ({ handleCheckout, data, onChange }) => {
           <h5 className='font-bold text-xl md:text-3xl mb-2'>Summary Order</h5>
           <div className='flex justify-between items-center'>
             <p>Subtotal</p>
-            <span>{NumberFormat(6000)}</span>
+            <span>{NumberFormat(data.cartTotalAmount)}</span>
           </div>
           <div className='flex justify-between items-center'>
             <p>Shipping</p>
-            <span>0</span>
+            <span>{NumberFormat(shipping)}</span>
           </div>
           <div className='flex justify-between items-center'>
             <p>Tax</p>
@@ -172,7 +176,7 @@ const CheckoutInformation = ({ handleCheckout, data, onChange }) => {
           <hr />
           <div className='flex justify-between items-center'>
             <p>Total Pay</p>
-            <span>{NumberFormat(6000)}</span>
+            <span>{NumberFormat(totalPayment)}</span>
           </div>
         </div>
       </div>
