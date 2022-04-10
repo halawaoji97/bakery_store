@@ -54,6 +54,7 @@ const Payment = () => {
             order: res.data
           }
         })
+        localStorage.removeItem('cartItems')
       })
       .catch((err) => {
         console.log(err)
@@ -80,7 +81,7 @@ const Payment = () => {
   return (
     <section className='container mx-auto font-quicksand tracking-wide'>
       <div className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-3 mt-8 md:mt-16 container shadow-lg rounded-2xl border-2 mb-44'>
-        <form className='max-w-xl col-span-2  p-10' method='post'>
+        <div className='max-w-xl col-span-2  p-10' method='post'>
           <div className=''>
             <label
               className='block font-medium text-dark-primary'
@@ -117,7 +118,7 @@ const Payment = () => {
               onChange={onChange}
             />
           </div>
-        </form>
+        </div>
 
         <div
           className='bg-dark-primary font-normal text-white p-8 h-full rounded-2xl flex flex-col justify-evenly'

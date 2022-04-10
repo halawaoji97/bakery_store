@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import NumberFormat from '../utils/numberFormat'
 
-const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
-  console.log(data)
-  console.log(nextStep)
+const CheckoutInformation = ({ handleCheckout, data, onChange, error }) => {
   const tax = 0.02
   const shipping = 10000
   const totalPayment =
     data.cartTotalAmount * tax + data.cartTotalAmount + shipping
+
+  console.log(error)
 
   return (
     <section className='container mx-auto font-quicksand tracking-wide'>
@@ -16,6 +16,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
         <form
           className='grid grid-cols-1 grid-rows-2 md:grid-rows-1 bg-white md:grid-cols-3 mt-8 md:mt-16 container shadow-lg rounded-2xl border-2 mb-44'
           method='post'
+          onSubmit={() => {
+            handleCheckout()
+          }}
         >
           <div className='max-w-xl col-span-2 p-8'>
             <div className=''>
@@ -35,6 +38,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 aria-label='Full Name'
                 onChange={onChange}
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='mt-2'>
               <label
@@ -53,6 +59,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 aria-label='Email'
                 onChange={onChange}
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='mt-2'>
               <label
@@ -71,6 +80,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 aria-label='Street'
                 onChange={onChange}
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='mt-2'>
               <label
@@ -89,6 +101,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 aria-label='City'
                 onChange={onChange}
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='inline-block mt-2 w-1/2 pr-1'>
               <label
@@ -107,6 +122,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 aria-label='Country'
                 onChange={onChange}
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='inline-block mt-2 -mx-1 pl-1 w-1/2'>
               <label
@@ -125,6 +143,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 aria-label='Zip Code'
                 onChange={onChange}
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='mb-6'>
               <label
@@ -142,6 +163,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 required
                 className='w-full px-5 font-medium py-3 text-dark-secondary bg-gray-200 rounded-lg my-2'
               />
+              {error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
             <div className='mb-6'>
               <label
@@ -159,6 +183,9 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
                 required
                 className='w-full px-5 font-medium py-3 text-dark-secondary bg-gray-200 rounded-lg my-2'
               />
+              {error && error && (
+                <div className='text-red-500 text-xs italic'>{error}</div>
+              )}
             </div>
           </div>
           <div
@@ -187,8 +214,8 @@ const CheckoutInformation = ({ handleCheckout, nextStep, data, onChange }) => {
             </div>
             <div className='flex h-44 justify-around flex-col'>
               <button
+                type='submit'
                 className='bg-gradient-to-r from-yellow-primary to-red-velvet transition-all ease-in duration-0 hover:duration-500 hover:bg-dark-primary  hover:text-white text-dark-secondary rounded-full py-3 px-12  font-semibold'
-                onClick={() => handleCheckout()}
               >
                 Choose Payment
               </button>

@@ -4,6 +4,7 @@ import CheckoutInformation from '../components/CheckoutInformation'
 
 const Checkout = () => {
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
   const cartItemsInLocalStorage = {
     cartItems: localStorage.getItem('cartItems')
@@ -40,43 +41,35 @@ const Checkout = () => {
     cartTotalQty: cartTotalQty
   })
 
-  const handleCheckout = () => {
-    setCustomerInformation({ ...customerInformation })
-    const order = {
-      fullName: customerInformation.fullName,
-      email: customerInformation.email,
-      addressNote: customerInformation.addressNote,
-      deliveryOn: customerInformation.deliveryOn,
-      orderOn: customerInformation.orderOn,
-      cartItems: customerInformation.cartItems,
-      cartTotalAmount: customerInformation.cartTotalAmount,
-      cartTotalQty: customerInformation.cartTotalQty,
-      phoneNumber: customerInformation.phoneNumber,
-      bankFrom: customerInformation.bankFrom,
-      accountHolder: customerInformation.accountHolder,
-      street: customerInformation.street,
-      city: customerInformation.city,
-      country: customerInformation.country,
-      zipCode: customerInformation.zipCode
-    }
-
-    // axios
-    //   .post('http://localhost:5000/api/v1/member/order-page', order)
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-    // nextStep()
-
-    console.log('ok')
-    // navigate to payment and send data
-    navigate('/payment', {
-      state: {
-        order
+  const handleCheckout = async () => {
+    try {
+      setCustomerInformation({ ...customerInformation })
+      const order = await {
+        fullName: customerInformation.fullName,
+        email: customerInformation.email,
+        addressNote: customerInformation.addressNote,
+        deliveryOn: customerInformation.deliveryOn,
+        orderOn: customerInformation.orderOn,
+        cartItems: customerInformation.cartItems,
+        cartTotalAmount: customerInformation.cartTotalAmount,
+        cartTotalQty: customerInformation.cartTotalQty,
+        phoneNumber: customerInformation.phoneNumber,
+        bankFrom: customerInformation.bankFrom,
+        accountHolder: customerInformation.accountHolder,
+        street: customerInformation.street,
+        city: customerInformation.city,
+        country: customerInformation.country,
+        zipCode: customerInformation.zipCode
       }
-    })
+
+      navigate('/payment', {
+        state: {
+          order
+        }
+      })
+    } catch (error) {
+      setError(error)
+    }
   }
 
   const onChange = (e) => {
@@ -86,8 +79,6 @@ const Checkout = () => {
       [name]: value
     })
   }
-
-  console.log(customerInformation)
 
   // const steps = {
   //   checkoutInformation: {
@@ -129,6 +120,7 @@ const Checkout = () => {
         data={customerInformation}
         onChange={onChange}
         handleCheckout={handleCheckout}
+        error={error}
       />
       {/* <Stepper steps={steps} initialStep='checkoutInformation'>
         {(prevStep, nextStep, currentStep, steps) => (
