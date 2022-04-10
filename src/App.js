@@ -1,14 +1,15 @@
-import './App.css';
-import Home from './pages/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DetailProduct from './pages/DetailProduct';
-import Cart from './pages/Cart';
-import { ToastContainer } from 'react-toastify';
+import './App.css'
+import Home from './pages/Home'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import DetailProduct from './pages/DetailProduct'
+import Cart from './pages/Cart'
+import { ToastContainer } from 'react-toastify'
 
-import 'react-toastify/dist/ReactToastify.css';
-import Payment from './components/Payment.js';
-import Checkout from './pages/Checkout';
-import Order from './components/Order';
+import 'react-toastify/dist/ReactToastify.css'
+import Payment from './components/Payment.js'
+import Checkout from './pages/Checkout'
+import Order from './components/Order'
+import Completed from './components/Completed'
 
 function App() {
   return (
@@ -20,10 +21,11 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/payment' element={<Payment />} />
+        <Route path='/completed' element={<Completed />} />
         <Route path='/order' element={<Order />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
