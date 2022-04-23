@@ -17,7 +17,7 @@ export const productsFetch = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        'http://bakeryy.herokuapp.com/api/v1/member/landing-page'
+        'https://bakeryy.herokuapp.com/api/v1/member/landing-page'
       );
       return response?.data;
     } catch (error) {

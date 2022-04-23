@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-const API_URL = 'http://bakeryy.herokuapp.com/api/v1/member/order-page';
+const API_URL = 'https://bakeryy.herokuapp.com/api/v1/member/order-page';
 
 export const todoSlide = createSlice({
   name: 'todo',
