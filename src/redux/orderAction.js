@@ -1,5 +1,5 @@
 export const createOrder = (order) => (dispatch) => {
-  fetch('http://localhost:5000/api/orders', {
+  fetch('http://bakeryy.herokuapp.com/api/v1/member/order-page', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
